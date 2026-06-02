@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2, UserCheck, Hammer, Gem, HeartHandshake } from "lucide-react";
 import { SiteShell, Section, SectionHeader, Placeholder } from "@/components/site/SiteShell";
 import { CTABand } from "@/components/site/CTABand";
+import { ReviewsMarquee } from "@/components/site/ReviewsMarquee";
 import heroTeam from "@/assets/hero-team.jpg.asset.json";
 
 
@@ -198,38 +199,9 @@ function HomePage() {
       </section>
 
 
-      {/* Services */}
-      <Section>
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <SectionHeader
-            eyebrow="Diensten"
-            title="Drie specialiteiten, één aanpak"
-            intro="Of het nu om een badkamer, keuken of dressing gaat — onze methode blijft dezelfde: luisteren, ontwerpen, realiseren."
-          />
-          <Link to="/realisaties" className="group inline-flex items-center gap-2 text-sm font-medium text-primary">
-            Bekijk onze realisaties <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Link>
-        </div>
+      {/* Reviews marquee */}
+      <ReviewsMarquee />
 
-        <div className="mt-14 grid gap-8 md:grid-cols-3">
-          {services.map((s) => (
-            <Link
-              key={s.to}
-              to={s.to}
-              className="group block overflow-hidden rounded-sm bg-card shadow-[var(--shadow-soft)] transition-shadow hover:shadow-[var(--shadow-elegant)]"
-            >
-              <Placeholder prompt={s.prompt} width={800} height={900} />
-              <div className="p-7">
-                <h3 className="text-2xl">{s.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
-                <p className="mt-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-                  Ontdek meer <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </Section>
 
       {/* Approach teaser */}
       <Section className="bg-ink text-cream" bleed>
@@ -293,22 +265,6 @@ function HomePage() {
         </div>
       </Section>
 
-      {/* Testimonials */}
-      <Section>
-        <SectionHeader eyebrow="Wat onze klanten zeggen" title="Vertrouwen, vakmanschap, nauwgezetheid" align="center" />
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {testimonials.map((t) => (
-            <blockquote key={t.author} className="rounded-sm border border-border bg-card p-8">
-              <p className="font-serif text-xl leading-snug">"{t.quote}"</p>
-              <footer className="mt-6 flex items-center gap-3 text-sm">
-                <CheckCircle2 className="h-4 w-4 text-primary" />
-                <span className="font-medium">{t.author}</span>
-                <span className="text-muted-foreground">· {t.place}</span>
-              </footer>
-            </blockquote>
-          ))}
-        </div>
-      </Section>
 
       <CTABand />
     </SiteShell>
