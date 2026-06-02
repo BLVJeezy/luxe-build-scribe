@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as KeukensRouteImport } from './routes/keukens'
 import { Route as DressingsRouteImport } from './routes/dressings'
 import { Route as BadkamersRouteImport } from './routes/badkamers'
+import { Route as AanpakRouteImport } from './routes/aanpak'
 import { Route as IndexRouteImport } from './routes/index'
 
 const KeukensRoute = KeukensRouteImport.update({
@@ -29,6 +30,11 @@ const BadkamersRoute = BadkamersRouteImport.update({
   path: '/badkamers',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AanpakRoute = AanpakRouteImport.update({
+  id: '/aanpak',
+  path: '/aanpak',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -37,12 +43,14 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/aanpak': typeof AanpakRoute
   '/badkamers': typeof BadkamersRoute
   '/dressings': typeof DressingsRoute
   '/keukens': typeof KeukensRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/aanpak': typeof AanpakRoute
   '/badkamers': typeof BadkamersRoute
   '/dressings': typeof DressingsRoute
   '/keukens': typeof KeukensRoute
@@ -50,20 +58,22 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/aanpak': typeof AanpakRoute
   '/badkamers': typeof BadkamersRoute
   '/dressings': typeof DressingsRoute
   '/keukens': typeof KeukensRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/badkamers' | '/dressings' | '/keukens'
+  fullPaths: '/' | '/aanpak' | '/badkamers' | '/dressings' | '/keukens'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/badkamers' | '/dressings' | '/keukens'
-  id: '__root__' | '/' | '/badkamers' | '/dressings' | '/keukens'
+  to: '/' | '/aanpak' | '/badkamers' | '/dressings' | '/keukens'
+  id: '__root__' | '/' | '/aanpak' | '/badkamers' | '/dressings' | '/keukens'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AanpakRoute: typeof AanpakRoute
   BadkamersRoute: typeof BadkamersRoute
   DressingsRoute: typeof DressingsRoute
   KeukensRoute: typeof KeukensRoute
@@ -92,6 +102,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BadkamersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/aanpak': {
+      id: '/aanpak'
+      path: '/aanpak'
+      fullPath: '/aanpak'
+      preLoaderRoute: typeof AanpakRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -104,6 +121,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AanpakRoute: AanpakRoute,
   BadkamersRoute: BadkamersRoute,
   DressingsRoute: DressingsRoute,
   KeukensRoute: KeukensRoute,
