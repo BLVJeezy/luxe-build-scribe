@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2, UserCheck, Hammer, Sparkles, HeartHandshake } from "lucide-react";
 import { SiteShell, Section, SectionHeader, Placeholder } from "@/components/site/SiteShell";
 import { CTABand } from "@/components/site/CTABand";
+import heroTeam from "@/assets/hero-team.jpg.asset.json";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -101,14 +103,22 @@ function HomePage() {
     <SiteShell>
       {/* HERO */}
       <section className="relative overflow-hidden bg-ink text-cream">
-        <div className="container-narrow relative grid gap-12 py-20 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:py-28">
-          <div>
+        <div className="absolute inset-0">
+          <img
+            src={heroTeam.url}
+            alt="Renobest team aan het werk aan een dressing"
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/70 to-ink/40" />
+        </div>
+        <div className="container-narrow relative grid gap-12 py-20 lg:py-28">
+          <div className="max-w-2xl">
             <p className="eyebrow">Renovatie · Limburg</p>
             <h1 className="mt-5 text-5xl leading-[1.02] md:text-6xl lg:text-7xl">
               De badkamer van uw{" "}
               <span className="italic text-primary">dromen</span> is ons vak.
             </h1>
-            <p className="mt-7 max-w-xl text-lg leading-relaxed text-cream/75">
+            <p className="mt-7 max-w-xl text-lg leading-relaxed text-cream/85">
               Vertrouw op Renobest voor een stijlvolle en praktische badkamer,
               keuken of dressing — afgewerkt met veel oog voor detail, door
               onze eigen vakmensen.
@@ -122,37 +132,21 @@ function HomePage() {
               </Link>
               <Link
                 to="/aanpak"
-                className="inline-flex items-center justify-center gap-2 rounded-sm border border-cream/20 px-7 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-cream transition-colors hover:border-primary hover:text-primary"
+                className="inline-flex items-center justify-center gap-2 rounded-sm border border-cream/30 bg-ink/30 px-7 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-cream backdrop-blur transition-colors hover:border-primary hover:text-primary"
               >
                 Ontdek onze aanpak
               </Link>
             </div>
 
-            <dl className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-cream/15 pt-8">
+            <dl className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-cream/20 pt-8">
               <Stat n="15+" label="jaar ervaring" />
               <Stat n="100%" label="eigen vakmensen" />
               <Stat n="1" label="vast aanspreekpunt" />
             </dl>
           </div>
-
-          <div className="relative">
-            <Placeholder
-              prompt="Luxurious modern bathroom renovation, large freestanding stone bathtub, warm wood vanity with brass fixtures, floor to ceiling windows with natural light, premium minimalist interior architecture photography, soft shadows"
-              width={1000}
-              height={1200}
-              className="rounded-sm shadow-[var(--shadow-elegant)]"
-            />
-            <div className="absolute -bottom-6 -left-6 hidden max-w-[240px] rounded-sm bg-background p-5 text-foreground shadow-[var(--shadow-elegant)] md:block">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-                Premium afwerking
-              </p>
-              <p className="mt-2 text-sm leading-snug">
-                Van eerste schets tot laatste voeg — alles in eigen beheer.
-              </p>
-            </div>
-          </div>
         </div>
       </section>
+
 
       {/* SERVICE SELECTOR */}
       <section className="bg-cream py-14">
