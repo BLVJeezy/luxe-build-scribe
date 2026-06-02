@@ -121,7 +121,7 @@ function HomePage() {
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-cream/85">
               Vertrouw op Renobest voor een stijlvolle en praktische badkamer,
-              keuken of dressing — afgewerkt met veel oog voor detail, door
+              keuken of dressing . Afgewerkt met veel oog voor detail, door
               onze eigen vakmensen.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
