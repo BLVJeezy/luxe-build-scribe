@@ -108,6 +108,33 @@ export function ReviewsMarquee() {
           ))}
         </div>
       </div>
+
+      <div className="container-narrow mt-16">
+        <div className="grid gap-6 md:grid-cols-3">
+          {[
+            { id: "uD-QxtyMHlc", title: "De zaakvoerder aan het woord", subtitle: "Zo gaan wij te werk" },
+            { id: "N6nWqV8zfLE", title: "Een klant vertelt", subtitle: "Ervaring met Renobest" },
+            { id: "uD-QxtyMHlc", title: "Nog een klantenreview", subtitle: "Tevreden over de afwerking" },
+          ].map((v, i) => (
+            <figure key={i} className="overflow-hidden rounded-xl border border-border bg-card shadow-[var(--shadow-soft)]">
+              <div className="relative aspect-video w-full bg-ink">
+                <iframe
+                  className="absolute inset-0 h-full w-full"
+                  src={`https://www.youtube.com/embed/${v.id}`}
+                  title={v.title}
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+              <figcaption className="p-4">
+                <div className="text-sm font-semibold">{v.title}</div>
+                <div className="text-xs text-muted-foreground">{v.subtitle}</div>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
     </Section>
   );
 }
