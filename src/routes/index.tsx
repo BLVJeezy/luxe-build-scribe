@@ -265,22 +265,6 @@ function HomePage() {
         </div>
       </Section>
 
-      {/* Testimonials */}
-      <Section>
-        <SectionHeader eyebrow="Wat onze klanten zeggen" title="Vertrouwen, vakmanschap, nauwgezetheid" align="center" />
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {testimonials.map((t) => (
-            <blockquote key={t.author} className="rounded-sm border border-border bg-card p-8">
-              <p className="font-serif text-xl leading-snug">"{t.quote}"</p>
-              <footer className="mt-6 flex items-center gap-3 text-sm">
-                <CheckCircle2 className="h-4 w-4 text-primary" />
-                <span className="font-medium">{t.author}</span>
-                <span className="text-muted-foreground">· {t.place}</span>
-              </footer>
-            </blockquote>
-          ))}
-        </div>
-      </Section>
 
       <CTABand />
     </SiteShell>
