@@ -102,7 +102,7 @@ function HomePage() {
   return (
     <SiteShell>
       {/* HERO */}
-      <section className="relative overflow-hidden bg-ink text-cream">
+      <section className="relative bg-ink text-cream">
         <div className="absolute inset-0">
           <img
             src={heroTeam.url}
@@ -145,11 +145,24 @@ function HomePage() {
             </dl>
           </div>
         </div>
+
+        {/* Floating USP bar overlapping hero */}
+        <div className="container-narrow relative -mb-16 translate-y-16">
+          <div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border shadow-[var(--shadow-elegant)] sm:grid-cols-2 lg:grid-cols-4">
+            {usps.map((u) => (
+              <div key={u.title} className="bg-background p-5">
+                <u.icon className="h-5 w-5 text-primary" strokeWidth={1.5} />
+                <h3 className="mt-3 text-sm font-semibold text-foreground">{u.title}</h3>
+                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{u.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
 
       {/* SERVICE SELECTOR */}
-      <section className="bg-cream py-14">
+      <section className="bg-cream pt-32 pb-14">
         <div className="container-narrow">
           <SectionHeader
             eyebrow="Kies uw renovatie"
@@ -181,23 +194,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* USPs */}
-      <Section className="bg-cream">
-        <SectionHeader
-          eyebrow="Waarom Renobest"
-          title="Renovatie zonder zorgen, mét vakmanschap"
-          intro="Onze aanpak staat helemaal in het teken van vertrouwen, vakmanschap en nauwgezetheid — van de eerste afspraak tot de oplevering."
-        />
-        <div className="mt-14 grid gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-2 lg:grid-cols-4">
-          {usps.map((u) => (
-            <div key={u.title} className="bg-background p-8">
-              <u.icon className="h-7 w-7 text-primary" strokeWidth={1.5} />
-              <h3 className="mt-6 text-xl">{u.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{u.body}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
 
       {/* Services */}
       <Section>
