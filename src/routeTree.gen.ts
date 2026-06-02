@@ -13,6 +13,7 @@ import { Route as RealisatiesRouteImport } from './routes/realisaties'
 import { Route as OverOnsRouteImport } from './routes/over-ons'
 import { Route as KeukensRouteImport } from './routes/keukens'
 import { Route as DressingsRouteImport } from './routes/dressings'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BadkamersRouteImport } from './routes/badkamers'
 import { Route as AanpakRouteImport } from './routes/aanpak'
 import { Route as IndexRouteImport } from './routes/index'
@@ -37,6 +38,11 @@ const DressingsRoute = DressingsRouteImport.update({
   path: '/dressings',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BadkamersRoute = BadkamersRouteImport.update({
   id: '/badkamers',
   path: '/badkamers',
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/aanpak': typeof AanpakRoute
   '/badkamers': typeof BadkamersRoute
+  '/contact': typeof ContactRoute
   '/dressings': typeof DressingsRoute
   '/keukens': typeof KeukensRoute
   '/over-ons': typeof OverOnsRoute
@@ -66,6 +73,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/aanpak': typeof AanpakRoute
   '/badkamers': typeof BadkamersRoute
+  '/contact': typeof ContactRoute
   '/dressings': typeof DressingsRoute
   '/keukens': typeof KeukensRoute
   '/over-ons': typeof OverOnsRoute
@@ -76,6 +84,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/aanpak': typeof AanpakRoute
   '/badkamers': typeof BadkamersRoute
+  '/contact': typeof ContactRoute
   '/dressings': typeof DressingsRoute
   '/keukens': typeof KeukensRoute
   '/over-ons': typeof OverOnsRoute
@@ -87,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/aanpak'
     | '/badkamers'
+    | '/contact'
     | '/dressings'
     | '/keukens'
     | '/over-ons'
@@ -96,6 +106,7 @@ export interface FileRouteTypes {
     | '/'
     | '/aanpak'
     | '/badkamers'
+    | '/contact'
     | '/dressings'
     | '/keukens'
     | '/over-ons'
@@ -105,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/aanpak'
     | '/badkamers'
+    | '/contact'
     | '/dressings'
     | '/keukens'
     | '/over-ons'
@@ -115,6 +127,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AanpakRoute: typeof AanpakRoute
   BadkamersRoute: typeof BadkamersRoute
+  ContactRoute: typeof ContactRoute
   DressingsRoute: typeof DressingsRoute
   KeukensRoute: typeof KeukensRoute
   OverOnsRoute: typeof OverOnsRoute
@@ -151,6 +164,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DressingsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/badkamers': {
       id: '/badkamers'
       path: '/badkamers'
@@ -179,6 +199,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AanpakRoute: AanpakRoute,
   BadkamersRoute: BadkamersRoute,
+  ContactRoute: ContactRoute,
   DressingsRoute: DressingsRoute,
   KeukensRoute: KeukensRoute,
   OverOnsRoute: OverOnsRoute,
@@ -187,3 +208,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
