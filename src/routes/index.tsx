@@ -9,17 +9,17 @@ import heroTeam from "@/assets/hero-team.jpg.asset.json";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Renobest — Badkamers, keukens & dressings in Limburg" },
+      { title: "Renovatie Badkamer, Keuken & Woning Limburg | Renobest" },
       {
         name: "description",
         content:
-          "Uw droombadkamer, -keuken of -dressing van A tot Z. Renobest werkt met eigen vakmensen en één vast aanspreekpunt voor een zorgeloze renovatie in Limburg.",
+          " Specialist in renovatie van badkamers, keukens, zolders en slaapkamers in Limburg. Eigen vakmensen, één aanspreekpunt, oog voor detail. Vraag uw offerte aan.",
       },
-      { property: "og:title", content: "Renobest — Renovatie zonder zorgen in Limburg" },
+      { property: "og:title", content: "Renovatie Badkamer, Keuken & Woning Limburg | Renobest" },
       {
         property: "og:description",
         content:
-          "Stijlvolle en praktische badkamers, keukens en dressings — afgewerkt met oog voor detail.",
+          "Specialist in badkamerrenovatie, keukenrenovatie en woningrenovatie in Limburg. Eigen vakmensen, één aanspreekpunt.",
       },
       { property: "og:url", content: "/" },
     ],
@@ -116,8 +116,8 @@ function HomePage() {
           <div className="max-w-2xl">
             <p className="eyebrow">Renovatie · Limburg</p>
             <h1 className="mt-5 text-5xl leading-[1.02] md:text-6xl lg:text-7xl">
-              De badkamer van uw{" "}
-              <span className="italic text-primary">dromen</span> is ons vak.
+              Renovatie badkamer, keuken &{" "}
+              <span className="italic text-primary">woning</span> in Limburg.
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-cream/85">
               Vertrouw op Renobest voor een stijlvolle en praktische badkamer,
