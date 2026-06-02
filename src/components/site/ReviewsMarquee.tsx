@@ -1,4 +1,5 @@
-import { Star } from "lucide-react";
+import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState } from "react";
 import { Section, SectionHeader } from "./SiteShell";
 
 type Review = {
