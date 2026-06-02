@@ -15,11 +15,11 @@ export const Route = createFileRoute("/")({
         content:
           " Specialist in renovatie van badkamers, keukens, zolders en slaapkamers in Limburg. Eigen vakmensen, één aanspreekpunt, oog voor detail. Vraag uw offerte aan.",
       },
-      { property: "og:title", content: "Renobest — Renovatie zonder zorgen in Limburg" },
+      { property: "og:title", content: "Renovatie Badkamer, Keuken & Woning Limburg | Renobest" },
       {
         property: "og:description",
         content:
-          "Stijlvolle en praktische badkamers, keukens en dressings — afgewerkt met oog voor detail.",
+          "Specialist in badkamerrenovatie, keukenrenovatie en woningrenovatie in Limburg. Eigen vakmensen, één aanspreekpunt.",
       },
       { property: "og:url", content: "/" },
     ],
