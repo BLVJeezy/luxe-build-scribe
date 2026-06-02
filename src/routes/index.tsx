@@ -154,6 +154,39 @@ function HomePage() {
         </div>
       </section>
 
+      {/* SERVICE SELECTOR */}
+      <section className="bg-cream py-14">
+        <div className="container-narrow">
+          <SectionHeader
+            eyebrow="Kies uw renovatie"
+            title="Waarmee kunnen wij u helpen?"
+            intro="Selecteer wat u wenst te renoveren en ontdek hoe Renobest uw dromen waarmaakt."
+            align="center"
+          />
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            {services.map((s) => (
+              <Link
+                key={s.to}
+                to={s.to}
+                className="group flex flex-col overflow-hidden rounded-sm bg-background shadow-[var(--shadow-soft)] transition-all hover:shadow-[var(--shadow-elegant)]"
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <Placeholder prompt={s.prompt} width={800} height={600} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-ink/20 transition-opacity group-hover:bg-ink/10" />
+                </div>
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="text-2xl">{s.title}</h3>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
+                  <div className="mt-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+                    Bekijk {s.title.toLowerCase()} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* USPs */}
       <Section className="bg-cream">
         <SectionHeader
