@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, CheckCircle2, UserCheck, Hammer, Sparkles, HeartHandshake } from "lucide-react";
+import { ArrowRight, CheckCircle2, UserCheck, Hammer, Gem, HeartHandshake } from "lucide-react";
 import { SiteShell, Section, SectionHeader, Placeholder } from "@/components/site/SiteShell";
 import { CTABand } from "@/components/site/CTABand";
 import heroTeam from "@/assets/hero-team.jpg.asset.json";
@@ -39,7 +39,7 @@ const usps = [
     body: "Geen onderaannemers die naar elkaar wijzen — alles door ons eigen team.",
   },
   {
-    icon: Sparkles,
+    icon: Gem,
     title: "Oog voor detail",
     body: "Vakmanschap en nauwgezetheid in elke afwerking, van leiding tot voeg.",
   },
@@ -148,12 +148,15 @@ function HomePage() {
 
         {/* Floating USP bar overlapping hero */}
         <div className="container-narrow relative -mb-16 translate-y-16">
-          <div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border shadow-[var(--shadow-elegant)] sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
             {usps.map((u) => (
-              <div key={u.title} className="bg-background p-5">
-                <u.icon className="h-5 w-5 text-primary" strokeWidth={1.5} />
-                <h3 className="mt-3 text-sm font-semibold text-foreground">{u.title}</h3>
-                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{u.body}</p>
+              <div
+                key={u.title}
+                className="rounded-xl border border-cream/15 bg-ink/55 p-4 backdrop-blur-xl shadow-[var(--shadow-elegant)] sm:p-5"
+              >
+                <u.icon className="h-5 w-5 text-primary" strokeWidth={1.75} />
+                <h3 className="mt-3 text-sm font-semibold text-cream">{u.title}</h3>
+                <p className="mt-1 hidden text-xs leading-relaxed text-cream/75 sm:block">{u.body}</p>
               </div>
             ))}
           </div>
