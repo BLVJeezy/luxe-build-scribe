@@ -77,14 +77,30 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Renobest — Badkamers, keukens & dressings in Limburg" },
+      {
+        name: "description",
+        content:
+          "Renobest realiseert uw droombadkamer, -keuken of -dressing van A tot Z, met eigen vakmensen en één vast aanspreekpunt. Vakmanschap in Limburg.",
+      },
+      { name: "author", content: "Renobest" },
+      { property: "og:site_name", content: "Renobest" },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "Renobest",
+          description:
+            "Renovatie van badkamers, keukens en dressings met eigen vakmensen.",
+          areaServed: "Limburg, België",
+          address: { "@type": "PostalAddress", addressRegion: "Limburg", addressCountry: "BE" },
+        }),
+      },
     ],
     links: [
       {
