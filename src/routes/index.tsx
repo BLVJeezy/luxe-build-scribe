@@ -9,11 +9,11 @@ import heroTeam from "@/assets/hero-team.jpg.asset.json";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Renobest — Badkamers, keukens & dressings in Limburg" },
+      { title: "Renovatie Badkamer, Keuken & Woning Limburg | Renobest" },
       {
         name: "description",
         content:
-          "Uw droombadkamer, -keuken of -dressing van A tot Z. Renobest werkt met eigen vakmensen en één vast aanspreekpunt voor een zorgeloze renovatie in Limburg.",
+          " Specialist in renovatie van badkamers, keukens, zolders en slaapkamers in Limburg. Eigen vakmensen, één aanspreekpunt, oog voor detail. Vraag uw offerte aan.",
       },
       { property: "og:title", content: "Renobest — Renovatie zonder zorgen in Limburg" },
       {
