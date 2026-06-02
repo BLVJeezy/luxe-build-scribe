@@ -116,8 +116,8 @@ function HomePage() {
           <div className="max-w-2xl">
             <p className="eyebrow">Renovatie · Limburg</p>
             <h1 className="mt-5 text-5xl leading-[1.02] md:text-6xl lg:text-7xl">
-              De badkamer van uw{" "}
-              <span className="italic text-primary">dromen</span> is ons vak.
+              Renovatie badkamer, keuken &{" "}
+              <span className="italic text-primary">woning</span> in Limburg.
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-cream/85">
               Vertrouw op Renobest voor een stijlvolle en praktische badkamer,
