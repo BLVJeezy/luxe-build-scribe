@@ -110,32 +110,115 @@ export function ReviewsMarquee() {
         </div>
       </div>
 
-      <div className="container-narrow mt-16">
-        <div className="grid gap-6 md:grid-cols-3">
-          {[
-            { id: "uD-QxtyMHlc", title: "De zaakvoerder aan het woord", subtitle: "Zo gaan wij te werk" },
-            { id: "N6nWqV8zfLE", title: "Een klant vertelt", subtitle: "Ervaring met Renobest" },
-            { id: "uD-QxtyMHlc", title: "Nog een klantenreview", subtitle: "Tevreden over de afwerking" },
-          ].map((v, i) => (
-            <figure key={i} className="overflow-hidden rounded-xl border border-border bg-card shadow-[var(--shadow-soft)]">
-              <div className="relative aspect-video w-full bg-ink">
-                <iframe
-                  className="absolute inset-0 h-full w-full"
-                  src={`https://www.youtube.com/embed/${v.id}`}
-                  title={v.title}
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-              <figcaption className="p-4">
-                <div className="text-sm font-semibold">{v.title}</div>
-                <div className="text-xs text-muted-foreground">{v.subtitle}</div>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </div>
+      <VideoCarousel />
     </Section>
+  );
+}
+
+const videos = [
+  { id: "N6nWqV8zfLE", title: "Een klant vertelt", subtitle: "Ervaring met Renobest" },
+  { id: "vsln3nBcc4k", title: "De zaakvoerder aan het woord", subtitle: "Zo gaan wij te werk" },
+  { id: "uD-QxtyMHlc", title: "Nog een klantenreview", subtitle: "Tevreden over de afwerking" },
+];
+
+function VideoCarousel() {
+  // Start central op de zaakvoerder (index 1)
+  const [active, setActive] = useState(1);
+  const total = videos.length;
+  const prev = (active - 1 + total) % total;
+  const next = (active + 1) % total;
+
+  const go = (dir: -1 | 1) => setActive((a) => (a + dir + total) % total);
+
+  return (
+    <div className="container-narrow mt-20">
+      <div className="relative mx-auto flex items-center justify-center">
+        {/* Achtergrond: vorige video links (subtiel) */}
+        <button
+          type="button"
+          onClick={() => go(-1)}
+          aria-label="Vorige video"
+          className="pointer-events-auto absolute left-0 hidden w-[28%] -translate-x-4 scale-90 opacity-40 transition-all hover:opacity-70 md:block"
+        >
+          <div className="relative aspect-video overflow-hidden rounded-xl border border-border bg-ink shadow-[var(--shadow-soft)]">
+            <img
+              src={`https://i.ytimg.com/vi/${videos[prev].id}/hqdefault.jpg`}
+              alt={videos[prev].title}
+              className="h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-ink/40" />
+          </div>
+        </button>
+
+        {/* Centrale video */}
+        <figure className="relative z-10 w-full max-w-3xl overflow-hidden rounded-xl border border-border bg-card shadow-[var(--shadow-elegant)]">
+          <div className="relative aspect-video w-full bg-ink">
+            <iframe
+              key={videos[active].id}
+              className="absolute inset-0 h-full w-full"
+              src={`https://www.youtube.com/embed/${videos[active].id}`}
+              title={videos[active].title}
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+          <figcaption className="p-5 text-center">
+            <div className="text-base font-semibold">{videos[active].title}</div>
+            <div className="text-xs text-muted-foreground">{videos[active].subtitle}</div>
+          </figcaption>
+        </figure>
+
+        {/* Achtergrond: volgende video rechts (subtiel) */}
+        <button
+          type="button"
+          onClick={() => go(1)}
+          aria-label="Volgende video"
+          className="pointer-events-auto absolute right-0 hidden w-[28%] translate-x-4 scale-90 opacity-40 transition-all hover:opacity-70 md:block"
+        >
+          <div className="relative aspect-video overflow-hidden rounded-xl border border-border bg-ink shadow-[var(--shadow-soft)]">
+            <img
+              src={`https://i.ytimg.com/vi/${videos[next].id}/hqdefault.jpg`}
+              alt={videos[next].title}
+              className="h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-ink/40" />
+          </div>
+        </button>
+
+        {/* Pijl-knoppen */}
+        <button
+          type="button"
+          onClick={() => go(-1)}
+          aria-label="Vorige video"
+          className="absolute left-2 top-1/2 z-20 -translate-y-1/2 rounded-full border border-border bg-background/90 p-2 shadow-[var(--shadow-soft)] backdrop-blur transition-colors hover:bg-primary hover:text-primary-foreground md:left-[30%] md:-translate-x-1/2"
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </button>
+        <button
+          type="button"
+          onClick={() => go(1)}
+          aria-label="Volgende video"
+          className="absolute right-2 top-1/2 z-20 -translate-y-1/2 rounded-full border border-border bg-background/90 p-2 shadow-[var(--shadow-soft)] backdrop-blur transition-colors hover:bg-primary hover:text-primary-foreground md:right-[30%] md:translate-x-1/2"
+        >
+          <ChevronRight className="h-5 w-5" />
+        </button>
+      </div>
+
+      {/* Indicatoren */}
+      <div className="mt-6 flex justify-center gap-2">
+        {videos.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            onClick={() => setActive(i)}
+            aria-label={`Ga naar video ${i + 1}`}
+            className={`h-1.5 rounded-full transition-all ${
+              i === active ? "w-8 bg-primary" : "w-4 bg-muted-foreground/30"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
   );
 }
