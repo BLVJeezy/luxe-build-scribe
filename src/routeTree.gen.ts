@@ -9,12 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RealisatiesRouteImport } from './routes/realisaties'
 import { Route as KeukensRouteImport } from './routes/keukens'
 import { Route as DressingsRouteImport } from './routes/dressings'
 import { Route as BadkamersRouteImport } from './routes/badkamers'
 import { Route as AanpakRouteImport } from './routes/aanpak'
 import { Route as IndexRouteImport } from './routes/index'
 
+const RealisatiesRoute = RealisatiesRouteImport.update({
+  id: '/realisaties',
+  path: '/realisaties',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const KeukensRoute = KeukensRouteImport.update({
   id: '/keukens',
   path: '/keukens',
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/badkamers': typeof BadkamersRoute
   '/dressings': typeof DressingsRoute
   '/keukens': typeof KeukensRoute
+  '/realisaties': typeof RealisatiesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/badkamers': typeof BadkamersRoute
   '/dressings': typeof DressingsRoute
   '/keukens': typeof KeukensRoute
+  '/realisaties': typeof RealisatiesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,33 @@ export interface FileRoutesById {
   '/badkamers': typeof BadkamersRoute
   '/dressings': typeof DressingsRoute
   '/keukens': typeof KeukensRoute
+  '/realisaties': typeof RealisatiesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/aanpak' | '/badkamers' | '/dressings' | '/keukens'
+  fullPaths:
+    | '/'
+    | '/aanpak'
+    | '/badkamers'
+    | '/dressings'
+    | '/keukens'
+    | '/realisaties'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/aanpak' | '/badkamers' | '/dressings' | '/keukens'
-  id: '__root__' | '/' | '/aanpak' | '/badkamers' | '/dressings' | '/keukens'
+  to:
+    | '/'
+    | '/aanpak'
+    | '/badkamers'
+    | '/dressings'
+    | '/keukens'
+    | '/realisaties'
+  id:
+    | '__root__'
+    | '/'
+    | '/aanpak'
+    | '/badkamers'
+    | '/dressings'
+    | '/keukens'
+    | '/realisaties'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,10 +105,18 @@ export interface RootRouteChildren {
   BadkamersRoute: typeof BadkamersRoute
   DressingsRoute: typeof DressingsRoute
   KeukensRoute: typeof KeukensRoute
+  RealisatiesRoute: typeof RealisatiesRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/realisaties': {
+      id: '/realisaties'
+      path: '/realisaties'
+      fullPath: '/realisaties'
+      preLoaderRoute: typeof RealisatiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/keukens': {
       id: '/keukens'
       path: '/keukens'
@@ -125,6 +161,7 @@ const rootRouteChildren: RootRouteChildren = {
   BadkamersRoute: BadkamersRoute,
   DressingsRoute: DressingsRoute,
   KeukensRoute: KeukensRoute,
+  RealisatiesRoute: RealisatiesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
