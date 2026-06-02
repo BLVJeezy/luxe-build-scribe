@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as KeukensRouteImport } from './routes/keukens'
+import { Route as DressingsRouteImport } from './routes/dressings'
 import { Route as BadkamersRouteImport } from './routes/badkamers'
 import { Route as IndexRouteImport } from './routes/index'
 
 const KeukensRoute = KeukensRouteImport.update({
   id: '/keukens',
   path: '/keukens',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DressingsRoute = DressingsRouteImport.update({
+  id: '/dressings',
+  path: '/dressings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BadkamersRoute = BadkamersRouteImport.update({
@@ -32,30 +38,34 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/badkamers': typeof BadkamersRoute
+  '/dressings': typeof DressingsRoute
   '/keukens': typeof KeukensRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/badkamers': typeof BadkamersRoute
+  '/dressings': typeof DressingsRoute
   '/keukens': typeof KeukensRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/badkamers': typeof BadkamersRoute
+  '/dressings': typeof DressingsRoute
   '/keukens': typeof KeukensRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/badkamers' | '/keukens'
+  fullPaths: '/' | '/badkamers' | '/dressings' | '/keukens'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/badkamers' | '/keukens'
-  id: '__root__' | '/' | '/badkamers' | '/keukens'
+  to: '/' | '/badkamers' | '/dressings' | '/keukens'
+  id: '__root__' | '/' | '/badkamers' | '/dressings' | '/keukens'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BadkamersRoute: typeof BadkamersRoute
+  DressingsRoute: typeof DressingsRoute
   KeukensRoute: typeof KeukensRoute
 }
 
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/keukens'
       fullPath: '/keukens'
       preLoaderRoute: typeof KeukensRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dressings': {
+      id: '/dressings'
+      path: '/dressings'
+      fullPath: '/dressings'
+      preLoaderRoute: typeof DressingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/badkamers': {
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BadkamersRoute: BadkamersRoute,
+  DressingsRoute: DressingsRoute,
   KeukensRoute: KeukensRoute,
 }
 export const routeTree = rootRouteImport
