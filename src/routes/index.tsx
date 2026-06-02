@@ -169,7 +169,6 @@ function HomePage() {
       <section className="bg-cream pt-32 pb-14">
         <div className="container-narrow">
           <SectionHeader
-            eyebrow="Kies uw renovatie"
             title="Waarmee kunnen wij u helpen?"
             intro="Selecteer wat u wenst te renoveren en ontdek hoe Renobest uw dromen waarmaakt."
             align="center"
