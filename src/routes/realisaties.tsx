@@ -6,33 +6,29 @@ import { CTABand } from "@/components/site/CTABand";
 export const Route = createFileRoute("/realisaties")({
   head: () => ({
     meta: [
-      { title: "Realisaties — Renobest" },
+      { title: "Realisaties — Bouwfirma Houbrechts Tongeren" },
       {
         name: "description",
-        content:
-          "Bekijk recente badkamers, keukens en dressings die Renobest realiseerde in Hasselt, Genk, Sint-Truiden en heel Limburg.",
+        content: "Bekijk afgewerkte renovatie- en ruwbouwprojecten van Bouwfirma Houbrechts in Tongeren, Bilzen, Riemst en heel Limburg.",
       },
-      { property: "og:title", content: "Realisaties — Renobest" },
-      { property: "og:description", content: "Een selectie van afgewerkte projecten in Limburg." },
-      { property: "og:url", content: "/realisaties" },
     ],
     links: [{ rel: "canonical", href: "/realisaties" }],
   }),
   component: RealisatiesPage,
 });
 
-type Category = "Alle" | "Badkamers" | "Keukens" | "Dressings";
+type Category = "Alle" | "Renovatie" | "Ruwbouw";
 
 const projects: { title: string; place: string; category: Exclude<Category, "Alle">; prompt: string; size: "tall" | "wide" | "square" }[] = [
-  { title: "Spa-badkamer", place: "Hasselt", category: "Badkamers", prompt: "Spa style bathroom with double walk-in shower, terrazzo floor, brass fixtures, warm wood vanity, premium interior photography", size: "tall" },
-  { title: "Scandinavische keuken", place: "Genk", category: "Keukens", prompt: "Scandinavian kitchen with warm oak, white walls, marble island, brass pendant lights", size: "wide" },
-  { title: "Walk-in dressing", place: "Tongeren", category: "Dressings", prompt: "Walk-in dressing room with oak shelves, central island, brass fixtures, soft lighting", size: "square" },
-  { title: "Klassiek modern badkamer", place: "Sint-Truiden", category: "Badkamers", prompt: "Classic modern bathroom with marble tiles, freestanding tub, gold fixtures", size: "wide" },
-  { title: "Donkere keuken", place: "Maaseik", category: "Keukens", prompt: "Dark moody kitchen with deep green cabinets, brass fixtures, marble worktop", size: "tall" },
-  { title: "Slaapkamer kast", place: "Bilzen", category: "Dressings", prompt: "Built-in bedroom wardrobe in matte cream, handleless doors, integrated lighting", size: "square" },
-  { title: "Penthouse badkamer", place: "Hasselt", category: "Badkamers", prompt: "Penthouse bathroom with city view, freestanding black tub, marble walls", size: "square" },
-  { title: "Familiekeuken", place: "Sint-Truiden", category: "Keukens", prompt: "Large family kitchen with white island, warm wood, pantry, family-friendly", size: "wide" },
-  { title: "Luxe dressing", place: "Genk", category: "Dressings", prompt: "Luxury dressing room with display cases, marble island, chandelier, premium interior", size: "tall" },
+  { title: "Badkamerrenovatie", place: "Tongeren", category: "Renovatie", prompt: "Modern bathroom renovation Belgium grey slate tiles walk-in shower contemporary fixtures professional finish", size: "tall" },
+  { title: "Uitbouw ruwbouw", place: "Bilzen", category: "Ruwbouw", prompt: "House extension construction Belgium brick masonry professional contractor residential Limburg", size: "wide" },
+  { title: "Totaalrenovatie", place: "Riemst", category: "Renovatie", prompt: "Complete Belgian home interior renovation open plan herringbone floor new kitchen modern bright", size: "square" },
+  { title: "Gevelrenovatie", place: "Borgloon", category: "Renovatie", prompt: "Belgian brick facade renovation fresh repointing traditional Limburg house professional finish", size: "wide" },
+  { title: "Nieuwbouw woning", place: "Hoeselt", category: "Ruwbouw", prompt: "New residential construction Belgium brick house casco professional ruwbouw Limburg landscape", size: "tall" },
+  { title: "Keukenrenovatie", place: "Tongeren", category: "Renovatie", prompt: "Kitchen renovation Belgium cream handleless cabinets stone countertop warm pendant lighting premium", size: "square" },
+  { title: "Uitbouw garage", place: "Sint-Truiden", category: "Ruwbouw", prompt: "Garage construction extension Belgium brick masonry professional contractor residential", size: "square" },
+  { title: "Badkamerrenovatie", place: "Kortessem", category: "Renovatie", prompt: "Belgian bathroom renovation dark green tiles brass fixtures vintage style compact luxury", size: "wide" },
+  { title: "Funderingswerken", place: "Tongeren", category: "Ruwbouw", prompt: "Foundation construction Belgium concrete footings reinforced residential professional building", size: "tall" },
 ];
 
 function RealisatiesPage() {
@@ -43,21 +39,20 @@ function RealisatiesPage() {
     <SiteShell>
       <section className="bg-ink text-cream">
         <div className="container-narrow py-20 md:py-24">
-          <p className="eyebrow">Realisaties</p>
+          <p className="eyebrow">Realisaties · Tongeren & Limburg</p>
           <h1 className="mt-4 max-w-3xl text-5xl leading-[1.05] md:text-6xl">
             Projecten die voor zich{" "}
             <span className="italic text-primary">spreken.</span>
           </h1>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-cream/75">
-            Een greep uit recent gerealiseerde badkamers, keukens en dressings —
-            allemaal afgewerkt door ons eigen team.
+            Een greep uit onze afgewerkte renovatie- en ruwbouwprojecten in de regio Tongeren, Bilzen, Riemst en omstreken.
           </p>
         </div>
       </section>
 
       <Section>
         <div className="flex flex-wrap gap-2">
-          {(["Alle", "Badkamers", "Keukens", "Dressings"] as Category[]).map((c) => (
+          {(["Alle", "Renovatie", "Ruwbouw"] as Category[]).map((c) => (
             <button
               key={c}
               onClick={() => setFilter(c)}
@@ -94,7 +89,11 @@ function RealisatiesPage() {
         </div>
       </Section>
 
-      <CTABand />
+      <CTABand
+        eyebrow="Uw project wordt het volgende"
+        title="Klaar om uw woning te transformeren?"
+        body="Vraag vandaag nog een gratis en vrijblijvende offerte aan. Wij komen bij u langs in de regio Tongeren."
+      />
     </SiteShell>
   );
 }

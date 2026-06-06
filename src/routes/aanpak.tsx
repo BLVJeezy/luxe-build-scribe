@@ -6,15 +6,12 @@ import { UserCheck } from "lucide-react";
 export const Route = createFileRoute("/aanpak")({
   head: () => ({
     meta: [
-      { title: "Onze aanpak — Renobest" },
+      { title: "Onze aanpak — Bouwfirma Houbrechts Tongeren" },
       {
         name: "description",
         content:
-          "Vertrouwen, vakmanschap en nauwgezetheid — van eerste afspraak tot oplevering. Ontdek de zes stappen van Renobest.",
+          "Transparant, eerlijk en persoonlijk — ontdek de aanpak van Bouwfirma Houbrechts in Tongeren. Van eerste afspraak tot oplevering.",
       },
-      { property: "og:title", content: "Onze aanpak — Renobest" },
-      { property: "og:description", content: "Eén aanspreekpunt en eigen vakmensen, in 6 heldere stappen." },
-      { property: "og:url", content: "/aanpak" },
     ],
     links: [{ rel: "canonical", href: "/aanpak" }],
   }),
@@ -24,33 +21,33 @@ export const Route = createFileRoute("/aanpak")({
 const steps = [
   {
     n: "01",
-    title: "Kennismaking bij u thuis",
-    body: "De zaakvoerder komt persoonlijk langs, luistert naar uw dromen en bekijkt de ruimte. Geheel vrijblijvend.",
+    title: "Gratis kennismaking bij u thuis",
+    body: "De zaakvoerder komt persoonlijk langs, luistert naar uw wensen en bekijkt de situatie ter plaatse. Geheel vrijblijvend en zonder verplichtingen.",
   },
   {
     n: "02",
-    title: "Ontwerp & advies",
-    body: "Wij werken een doordacht 3D-ontwerp uit en helpen u slimme keuzes maken op vlak van indeling, materialen en sfeer.",
+    title: "Transparante offerte",
+    body: "U ontvangt een gedetailleerde offerte zonder verborgen kosten. Alles uitgelegd per post: materialen, uren en planning — binnen 5 werkdagen.",
   },
   {
     n: "03",
-    title: "Materiaalkeuze",
-    body: "Samen kiezen we tegels, sanitair, fronten, werkbladen — bij vertrouwde leveranciers, zonder verrassingen.",
+    title: "Materialen & voorbereiding",
+    body: "Samen bespreken we de materialen, leveringen en planning. Wij regelen alles zodat de start vlot verloopt.",
   },
   {
     n: "04",
-    title: "Heldere planning",
-    body: "U krijgt een vaste startdatum en opleverdatum. Een duidelijke planning, week per week.",
+    title: "Vaste startdatum",
+    body: "U krijgt een vaste startdatum en opleverdatum. Week per week weet u wat er zal gebeuren op uw werf.",
   },
   {
     n: "05",
-    title: "Uitvoering met eigen vakmensen",
-    body: "Wij realiseren het volledige project met onze eigen werknemers. Geen onderaannemers, geen gepuzzel.",
+    title: "Uitvoering door ons team",
+    body: "Wij voeren het project uit — van sloop tot afwerking. Eén aanspreekpunt, geen doorverwijzingen, geen miscommunicatie.",
   },
   {
     n: "06",
-    title: "Oplevering + the extra mile",
-    body: "Bij de eindcontrole lopen we alles na. Extra wensen? Wij staan voor u klaar tot u 100% tevreden bent.",
+    title: "Oplevering & nazorg",
+    body: "Gezamenlijke eindcontrole bij oplevering. Zijn er puntjes? Wij lossen alles op tot u 100% tevreden bent.",
   },
 ];
 
@@ -61,12 +58,11 @@ function AanpakPage() {
         <div className="container-narrow py-20 md:py-28">
           <p className="eyebrow">Onze aanpak</p>
           <h1 className="mt-4 max-w-3xl text-5xl leading-[1.05] md:text-6xl">
-            Vertrouwen, vakmanschap en{" "}
-            <span className="italic text-primary">nauwgezetheid.</span>
+            Transparant, eerlijk en{" "}
+            <span className="italic text-primary">persoonlijk.</span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-cream/75">
-            Onze aanpak staat helemaal in het teken van vertrouwen, vakmanschap
-            en nauwgezetheid — van de eerste afspraak tot de oplevering.
+            Onze aanpak is eenvoudig: één aanspreekpunt, duidelijke afspraken en vakmanschap van begin tot einde. Zo werkt Bouwfirma Houbrechts.
           </p>
         </div>
       </section>
@@ -97,31 +93,28 @@ function AanpakPage() {
               <h2 className="mt-3 text-3xl md:text-4xl">
                 De zaakvoerder is altijd uw aanspreekpunt.
               </h2>
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-cream/75">
-                Van de eerste afspraak bij u thuis tot de oplevering: u heeft
-                één vast contact die het volledige project opvolgt. Geen
-                doorverwijzingen, geen ruis op de lijn.
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-cream/72">
+                Van het eerste plaatsbezoek tot de oplevering: u heeft één vast contact die uw project van dichtbij opvolgt. Geen doorverwijzingen, geen ruis op de lijn — gewoon duidelijke communicatie en vakmanschap.
               </p>
             </div>
           </div>
         </div>
       </Section>
 
-      <SectionHeaderBlock />
-      <CTABand />
-    </SiteShell>
-  );
-}
+      <Section>
+        <SectionHeader
+          align="center"
+          eyebrow="Altijd the extra mile"
+          title="Ons team heeft oog voor elk detail."
+          intro="Heeft u na de oplevering nog een extra vraag of een punt dat afgewerkt moet worden? Wij staan voor u klaar. Dat is voor ons vanzelfsprekend."
+        />
+      </Section>
 
-function SectionHeaderBlock() {
-  return (
-    <Section>
-      <SectionHeader
-        align="center"
-        eyebrow="Altijd the extra mile"
-        title="Ons team heeft oog voor het kleinste detail."
-        intro="Heeft u aan het eind van het project nog extra wensen? Dan staan we voor u klaar. Dat is voor ons vanzelfsprekend."
+      <CTABand
+        eyebrow="Klaar om te starten?"
+        title="Plan uw gratis kennismakingsgesprek"
+        body="De zaakvoerder komt persoonlijk langs. Geen verplichtingen, geen kleine lettertjes — gewoon eerlijk advies en een transparante offerte."
       />
-    </Section>
+    </SiteShell>
   );
 }

@@ -1,223 +1,35 @@
-import { Star, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
-import { Section, SectionHeader } from "./SiteShell";
-
-type Review = {
-  author: string;
-  place: string;
-  rating: number; // 1-5
-  text: string;
-};
-
-// Echte Google reviews (volledige pool, incl. lage scores die we eruit filteren)
-const allReviews: Review[] = [
-  { author: "Sonja Meyen", place: "Google · 3 maanden geleden", rating: 5, text: "Top top top, meer kan ik niet zeggen. Van offerte tot oplevering op 2 weken van werf naar een sjieke badkamer. Vriendelijke, bekwame stielmannen." },
-  { author: "Nele Sak", place: "Google · 8 maanden geleden", rating: 5, text: "Hun slogan klopt! Dikke 10/10 voor deze firma. Renoveren zonder zorgen. Het begon al met een geweldige 3D-tekening die direct toonde hoe wij het wilden." },
-  { author: "Patrick Vergoosen", place: "Google · 1 jaar geleden", rating: 5, text: "Vorig jaar besloten we om onze badkamer te renoveren. Na het vergelijken van verschillende offertes kozen we voor Renobest, vooral dankzij het vertrouwen." },
-  { author: "Marie Christine Minke", place: "Google · 7 maanden geleden", rating: 5, text: "Zeer tevreden over de totale badkamerrenovatie. Alles vlot verlopen binnen de afspraken over tijd en budget. Er werd goed geluisterd naar mijn wensen." },
-  { author: "Jimmy Vansant", place: "Google · 1 jaar geleden", rating: 4, text: "Zeer tevreden met de renovatie!" },
-  { author: "Christof Heusdens", place: "Google · 7 maanden geleden", rating: 5, text: "Topservice! Top-naservice! Topstielmannen! Correcte prijs! Bij een probleem, zelfs in het weekend, kun je hen steeds contacteren. Aanrader!" },
-  { author: "Betty Goossens", place: "Google · 1 jaar geleden", rating: 5, text: "Enkele maanden geleden hebben we Renobest gecontacteerd voor een badkamerrenovatie. Heel professioneel en correct." },
-  { author: "Lydia Vandoren", place: "Google · 1 jaar geleden", rating: 5, text: "Wij genieten nu al sinds 1 jaar van onze volledig vernieuwde badkamer! Gewoon zalig. Werken verliepen vlot en mooi binnen de afgesproken tijd." },
-  { author: "Mia Indekeu", place: "Google · 10 maanden geleden", rating: 5, text: "Fantastisch! Mercikes aan Robby die het zo mooi wist uit te zoeken. Heel content over de plaatsers, harde en precieze werkers." },
-  { author: "Lut Brouns", place: "Google · 1 jaar geleden", rating: 5, text: "Super tevreden over alle aspecten. Renoveren in een bewoond appartement van 1974 levert verrassingen op, maar Renobest had alles voorzien." },
-  { author: "Sebastien Bodart", place: "Google · 2 jaar geleden", rating: 5, text: "Ik kan enkel maar positief zijn over onze ervaring met Renobest en de renovatie van onze badkamer." },
-  { author: "Cora Meier", place: "Google · 2 jaar geleden", rating: 5, text: "Al meerdere malen samengewerkt met Renobest voor de renovaties van keuken en badkamer." },
-  { author: "Ludo Claes", place: "Google · 2 jaar geleden", rating: 5, text: "Wij wilden een totale renovatie van onze badkamer en kwamen Renobest tegen. Vanaf het eerste contact hadden we een goed gevoel." },
-  { author: "Ingrid Vanbrabant", place: "Google · 1 jaar geleden", rating: 5, text: "Zeer vriendelijke en professionele vakmensen die weten van aanpakken. Luisteren aandachtig naar onze wensen en realiseren die tot in de kleinste details." },
-  { author: "Christel Bangels", place: "Google · 3 maanden geleden", rating: 5, text: "Bekwame en correcte firma, zeker aan te bevelen!" },
-  { author: "Raf Ruysen", place: "Google · 1 jaar geleden", rating: 5, text: "Zeer tevreden over de communicatie en uitvoering van de werken. Onze badkamer is exact zoals wij altijd gewild hebben. Top!" },
-  { author: "Mireille Vanhoutryve", place: "Google · 1 jaar geleden", rating: 5, text: "Een kleine, oude badkamer werd getransformeerd in een mooi geheel. Van begin tot einde een zeer goede samenwerking." },
-  { author: "Gijs Debeij", place: "Google · 3 jaar geleden", rating: 5, text: "Zeer tevreden. Gehele badkamer laten renoveren met top resultaat. Service van begin tot einde dik in orde!" },
-  { author: "Gerard Verberne", place: "Google · 2 jaar geleden", rating: 5, text: "Bedankt voor de fijne samenwerking. Fijn, net personeel. Alles perfect volgens afspraak." },
-  { author: "Thieu Casters", place: "Google · 2 jaar geleden", rating: 5, text: "Een echte aanrader. Ook na 3 jaar zeer vlotte achteraf service, fijne communicatie en perfect uitgevoerd door bekwame vakmensen." },
-  { author: "Jos Mesotten", place: "Google · 2 jaar geleden", rating: 5, text: "Gewoon topfirma met vriendelijk en behulpzaam personeel die hun vak kennen." },
-  { author: "Silvy Leenders", place: "Google · 8 maanden geleden", rating: 5, text: "Super super tevreden. Vriendelijke mensen." },
-  { author: "Laurens Ignoul", place: "Google · 1 jaar geleden", rating: 5, text: "Goede service, snelle opvolging. Zeer tevreden over de uitgevoerde werken." },
-  { author: "Victor David", place: "Google · 3 maanden geleden", rating: 5, text: "Behulpzame medewerkers!" },
-  { author: "Jimmy B", place: "Google · 3 jaar geleden", rating: 5, text: "Goede communicatie en duidelijke prijsafspraken. Kleine problemen werden snel opgelost. Hogere prijs, maar kwaliteitsmateriaal." },
-  // Lage reviews — worden uit de weergave gefilterd (<3 sterren)
-  { author: "Anoniem", place: "Google", rating: 2, text: "Niet positief." },
-  { author: "Anoniem", place: "Google", rating: 1, text: "Geen aanrader." },
+const reviews = [
+  { quote: "Eindelijk een bouwfirma die doet wat ze belooft. Netjes, op tijd en perfecte afwerking.", author: "Marc V.", place: "Tongeren" },
+  { quote: "Onze badkamer volledig vernieuwd — prachtig resultaat. Altijd netjes en correct.", author: "Lies D.", place: "Bilzen" },
+  { quote: "Ruwbouw van onze uitbouw perfect uitgevoerd. Professioneel team, eerlijke prijs.", author: "Tom B.", place: "Riemst" },
+  { quote: "Van eerste gesprek tot oplevering: persoonlijk contact, nauwgezet en met oog voor detail.", author: "Sofie & Jan", place: "Hoeselt" },
+  { quote: "Onze keuken en woonkamer volledig gerenoveerd. Top kwaliteit, scherpe prijs.", author: "Familie Peters", place: "Borgloon" },
+  { quote: "Snelle offerte, duidelijke communicatie en prachtig eindresultaat. Absolute aanrader!", author: "Kevin M.", place: "Sint-Truiden" },
+  { quote: "Totaalrenovatie van A tot Z begeleid door de zaakvoerder zelf. Geweldig resultaat.", author: "An V.", place: "Tongeren" },
+  { quote: "Professioneel, eerlijk en oog voor detail. Ze kwamen zelfs nog extra punten afwerken na de oplevering.", author: "Dirk H.", place: "Kortessem" },
 ];
-
-// Filter reviews onder 3 sterren weg uit de weergave
-const reviews = allReviews.filter((r) => r.rating >= 3);
-// Officieel Google-totaal en gemiddelde (incl. alle reviews)
-const totalCount = 34;
-const average = 4.3;
-
-// Duplicate the array so the marquee loops seamlessly
-const loop = [...reviews, ...reviews];
-
-function Stars({ value }: { value: number }) {
-  return (
-    <div className="flex items-center gap-0.5" aria-label={`${value} van 5 sterren`}>
-      {[1, 2, 3, 4, 5].map((i) => (
-        <Star
-          key={i}
-          className={
-            i <= Math.round(value)
-              ? "h-4 w-4 fill-primary text-primary"
-              : "h-4 w-4 text-muted-foreground/40"
-          }
-        />
-      ))}
-    </div>
-  );
-}
-
-function ReviewCard({ r }: { r: Review }) {
-  return (
-    <article className="flex w-[320px] shrink-0 flex-col justify-between rounded-xl border border-border bg-card p-6 shadow-[var(--shadow-soft)] sm:w-[360px]">
-      <div>
-        <Stars value={r.rating} />
-        <p className="mt-4 font-serif text-lg leading-snug">"{r.text}"</p>
-      </div>
-      <footer className="mt-5 text-sm">
-        <span className="font-medium">{r.author}</span>
-        <span className="text-muted-foreground"> · {r.place}</span>
-      </footer>
-    </article>
-  );
-}
 
 export function ReviewsMarquee() {
-  return (
-    <Section className="bg-cream">
-      <div className="container-narrow">
-        <SectionHeader
-          eyebrow="Wat onze klanten zeggen"
-          title="Vertrouwen, vakmanschap, nauwgezetheid"
-          align="center"
-        />
-        <div className="mt-6 flex items-center justify-center gap-3">
-          <Stars value={average} />
-          <span className="text-sm">
-            <span className="font-semibold text-foreground">{average.toFixed(1)}</span>
-            <span className="text-muted-foreground"> · op basis van {totalCount} reviews</span>
-          </span>
-        </div>
-      </div>
+  const doubled = [...reviews, ...reviews];
 
-      <div
-        className="marquee mt-12 [--marquee-duration:60s] [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"
-      >
-        <div className="marquee-track flex gap-5">
-          {loop.map((r, i) => (
-            <ReviewCard key={`${r.author}-${i}`} r={r} />
+  return (
+    <div className="border-y border-border bg-stone/40 py-12">
+      <div className="marquee" style={{ "--marquee-duration": "55s" } as React.CSSProperties}>
+        <div className="marquee-track flex gap-6">
+          {doubled.map((r, i) => (
+            <div
+              key={i}
+              className="w-[340px] flex-none rounded-sm border border-border bg-card p-7 shadow-[var(--shadow-soft)]"
+            >
+              <div className="text-primary text-sm tracking-wider">★★★★★</div>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">"{r.quote}"</p>
+              <div className="mt-5 flex items-center justify-between">
+                <p className="text-sm font-medium">{r.author}</p>
+                <p className="text-xs text-muted-foreground">{r.place}</p>
+              </div>
+            </div>
           ))}
         </div>
-      </div>
-
-      <VideoCarousel />
-    </Section>
-  );
-}
-
-const videos = [
-  { id: "N6nWqV8zfLE", title: "Een klant vertelt", subtitle: "Ervaring met Renobest" },
-  { id: "vsln3nBcc4k", title: "De zaakvoerder aan het woord", subtitle: "Zo gaan wij te werk" },
-  { id: "uD-QxtyMHlc", title: "Nog een klantenreview", subtitle: "Tevreden over de afwerking" },
-];
-
-function VideoCarousel() {
-  // Start central op de zaakvoerder (index 1)
-  const [active, setActive] = useState(1);
-  const total = videos.length;
-  const prev = (active - 1 + total) % total;
-  const next = (active + 1) % total;
-
-  const go = (dir: -1 | 1) => setActive((a) => (a + dir + total) % total);
-
-  return (
-    <div className="container-narrow mt-20">
-      <div className="relative mx-auto flex items-center justify-center">
-        {/* Achtergrond: vorige video links (subtiel) */}
-        <button
-          type="button"
-          onClick={() => go(-1)}
-          aria-label="Vorige video"
-          className="pointer-events-auto absolute left-0 hidden w-[28%] -translate-x-4 scale-90 opacity-40 transition-all hover:opacity-70 md:block"
-        >
-          <div className="relative aspect-video overflow-hidden rounded-xl border border-border bg-ink shadow-[var(--shadow-soft)]">
-            <img
-              src={`https://i.ytimg.com/vi/${videos[prev].id}/hqdefault.jpg`}
-              alt={videos[prev].title}
-              className="h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-ink/40" />
-          </div>
-        </button>
-
-        {/* Centrale video */}
-        <figure className="relative z-10 w-full max-w-3xl overflow-hidden rounded-xl border border-border bg-card shadow-[var(--shadow-elegant)]">
-          <div className="relative aspect-video w-full bg-ink">
-            <iframe
-              key={videos[active].id}
-              className="absolute inset-0 h-full w-full"
-              src={`https://www.youtube.com/embed/${videos[active].id}`}
-              title={videos[active].title}
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-          <figcaption className="p-5 text-center">
-            <div className="text-base font-semibold">{videos[active].title}</div>
-            <div className="text-xs text-muted-foreground">{videos[active].subtitle}</div>
-          </figcaption>
-        </figure>
-
-        {/* Achtergrond: volgende video rechts (subtiel) */}
-        <button
-          type="button"
-          onClick={() => go(1)}
-          aria-label="Volgende video"
-          className="pointer-events-auto absolute right-0 hidden w-[28%] translate-x-4 scale-90 opacity-40 transition-all hover:opacity-70 md:block"
-        >
-          <div className="relative aspect-video overflow-hidden rounded-xl border border-border bg-ink shadow-[var(--shadow-soft)]">
-            <img
-              src={`https://i.ytimg.com/vi/${videos[next].id}/hqdefault.jpg`}
-              alt={videos[next].title}
-              className="h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-ink/40" />
-          </div>
-        </button>
-
-        {/* Pijl-knoppen */}
-        <button
-          type="button"
-          onClick={() => go(-1)}
-          aria-label="Vorige video"
-          className="absolute left-2 top-1/2 z-20 -translate-y-1/2 rounded-full border border-border bg-background/90 p-2 shadow-[var(--shadow-soft)] backdrop-blur transition-colors hover:bg-primary hover:text-primary-foreground md:left-[30%] md:-translate-x-1/2"
-        >
-          <ChevronLeft className="h-5 w-5" />
-        </button>
-        <button
-          type="button"
-          onClick={() => go(1)}
-          aria-label="Volgende video"
-          className="absolute right-2 top-1/2 z-20 -translate-y-1/2 rounded-full border border-border bg-background/90 p-2 shadow-[var(--shadow-soft)] backdrop-blur transition-colors hover:bg-primary hover:text-primary-foreground md:right-[30%] md:translate-x-1/2"
-        >
-          <ChevronRight className="h-5 w-5" />
-        </button>
-      </div>
-
-      {/* Indicatoren */}
-      <div className="mt-6 flex justify-center gap-2">
-        {videos.map((_, i) => (
-          <button
-            key={i}
-            type="button"
-            onClick={() => setActive(i)}
-            aria-label={`Ga naar video ${i + 1}`}
-            className={`h-1.5 rounded-full transition-all ${
-              i === active ? "w-8 bg-primary" : "w-4 bg-muted-foreground/30"
-            }`}
-          />
-        ))}
       </div>
     </div>
   );

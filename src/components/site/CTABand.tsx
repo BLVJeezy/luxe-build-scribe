@@ -2,9 +2,9 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
 export function CTABand({
-  eyebrow = "Klaar voor uw renovatie?",
-  title = "Realiseer uw droomproject met Renobest",
-  body = "Eén aanspreekpunt, eigen vakmensen en oog voor het kleinste detail. Vraag vrijblijvend uw offerte aan.",
+  eyebrow = "Klaar voor uw bouwproject?",
+  title = "Realiseer uw project met Bouwfirma Houbrechts",
+  body = "Één aanspreekpunt, jarenlange expertise en eerlijke prijzen. Vraag vandaag nog uw gratis en vrijblijvende offerte aan.",
 }: {
   eyebrow?: string;
   title?: string;
@@ -14,7 +14,7 @@ export function CTABand({
     <section className="relative overflow-hidden bg-ink text-cream">
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl"
+        className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-primary/15 blur-3xl"
       />
       <div
         aria-hidden
@@ -26,7 +26,7 @@ export function CTABand({
           <h2 className="mt-4 max-w-2xl text-4xl leading-[1.05] md:text-5xl">
             {title}
           </h2>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-cream/70">
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-cream/65">
             {body}
           </p>
         </div>

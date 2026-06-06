@@ -1,102 +1,93 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, CheckCircle2, UserCheck, Hammer, Gem, HeartHandshake } from "lucide-react";
+import { ArrowRight, UserCheck, Hammer, MapPin, HeartHandshake } from "lucide-react";
 import { SiteShell, Section, SectionHeader, Placeholder } from "@/components/site/SiteShell";
 import { CTABand } from "@/components/site/CTABand";
 import { ReviewsMarquee } from "@/components/site/ReviewsMarquee";
-import heroTeam from "@/assets/hero-team.jpg.asset.json";
 
-
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/")(({
   head: () => ({
     meta: [
-      { title: "Renovatie Badkamer, Keuken & Woning Limburg | Renobest" },
+      { title: "Bouwfirma Tongeren — Renovatie & Ruwbouw | Houbrechts" },
       {
         name: "description",
         content:
-          " Specialist in renovatie van badkamers, keukens, zolders en slaapkamers in Limburg. Eigen vakmensen, één aanspreekpunt, oog voor detail. Vraag uw offerte aan.",
+          "Bouwfirma Houbrechts in Tongeren: specialist in renovatiewerken en ruwbouw in Limburg. Eerlijke prijzen, persoonlijke aanpak, gratis offerte.",
       },
-      { property: "og:title", content: "Renovatie Badkamer, Keuken & Woning Limburg | Renobest" },
+      { property: "og:title", content: "Bouwfirma Houbrechts Tongeren — Renovatie & Ruwbouw" },
       {
         property: "og:description",
-        content:
-          "Specialist in badkamerrenovatie, keukenrenovatie en woningrenovatie in Limburg. Eigen vakmensen, één aanspreekpunt.",
+        content: "Specialist in renovatie en ruwbouw in Tongeren en omstreken. Lokale familiezaak, één aanspreekpunt.",
       },
       { property: "og:url", content: "/" },
     ],
     links: [{ rel: "canonical", href: "/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "HomeAndConstructionBusiness",
+          name: "Bouwfirma Houbrechts",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Driekruisenstraat 105",
+            addressLocality: "Tongeren",
+            postalCode: "3700",
+            addressCountry: "BE",
+          },
+          geo: { "@type": "GeoCoordinates", latitude: 50.78, longitude: 5.46 },
+          url: "https://houbrechts.be",
+          areaServed: "Tongeren, Limburg, België",
+          description: "Bouwfirma gespecialiseerd in renovatiewerken en ruwbouw in de regio Tongeren–Limburg.",
+        }),
+      },
+    ],
   }),
   component: HomePage,
-});
+}));
 
 const usps = [
   {
     icon: UserCheck,
-    title: "Eén aanspreekpunt",
-    body: "De zaakvoerder is uw vaste contact, van eerste afspraak tot oplevering.",
+    title: "Één aanspreekpunt",
+    body: "De zaakvoerder is uw vaste contact, van eerste gesprek tot oplevering.",
   },
   {
     icon: Hammer,
-    title: "Eigen vakmensen",
-    body: "Geen onderaannemers die naar elkaar wijzen — alles door ons eigen team.",
+    title: "Vakmanschap",
+    body: "Jarenlange ervaring in renovatie en ruwbouw — oog voor elk detail.",
   },
   {
-    icon: Gem,
-    title: "Oog voor detail",
-    body: "Vakmanschap en nauwgezetheid in elke afwerking, van leiding tot voeg.",
+    icon: MapPin,
+    title: "Lokaal in Tongeren",
+    body: "Gevestigd in Tongeren, actief in de hele regio Limburg.",
   },
   {
     icon: HeartHandshake,
-    title: "Altijd the extra mile",
-    body: "Extra wensen op het einde? Wij staan voor u klaar tot u 100% tevreden bent.",
+    title: "Eerlijke prijs",
+    body: "Transparante offertes zonder verborgen kosten. 6% BTW mogelijk.",
   },
 ];
 
 const services = [
   {
-    to: "/badkamers" as const,
-    title: "Badkamers",
-    body: "Tijdloze badkamers met luxueuze afwerking — van walk-in douche tot vrijstaand bad.",
-    prompt: "Luxurious modern bathroom renovation, walk-in rain shower with black fixtures, freestanding stone bath, warm natural light, large format porcelain tiles, premium interior photography",
+    to: "/renovatie" as const,
+    title: "Renovatie",
+    body: "Van badkamerrenovatie tot totaalverbouwing — wij renoveren uw woning van A tot Z met vakmanschap en oog voor detail.",
+    prompt: "Belgian home renovation project, beautiful modern bathroom with natural stone tiles, warm lighting, premium interior photography, renovation contractor",
   },
   {
-    to: "/keukens" as const,
-    title: "Keukens",
-    body: "Praktische, stijlvolle keukens op maat — het kloppend hart van uw woning.",
-    prompt: "Premium modern kitchen renovation, matte handleless cabinets in warm tones, natural stone worktop with waterfall edge, integrated appliances, soft pendant lighting, editorial interior photography",
-  },
-  {
-    to: "/dressings" as const,
-    title: "Dressings",
-    body: "Slim ingedeelde dressings en inbouwkasten — alles op zijn plek, elke dag.",
-    prompt: "Elegant walk-in dressing room, custom oak wardrobe with integrated LED lighting, organized shelves and drawers, soft beige carpet, warm ambient lighting, premium interior photography",
+    to: "/ruwbouw" as const,
+    title: "Ruwbouw & Nieuwbouw",
+    body: "Solide fundamenten voor uw nieuwbouw, uitbouw of aanbouw. Funderingen, metselwerk en betonwerken.",
+    prompt: "Belgian new construction ruwbouw, brick masonry work on modern residential home, professional contractors, Limburg architecture, editorial photography",
   },
 ];
 
 const approach = [
-  { n: "01", title: "Kennismaking bij u thuis", body: "We luisteren naar uw dromen en bekijken de ruimte." },
-  { n: "02", title: "Ontwerp & advies", body: "U krijgt een doordacht 3D-ontwerp en heldere offerte." },
-  { n: "03", title: "Realisatie met eigen team", body: "Wij voeren alles uit — van sloop tot oplevering." },
-];
-
-const testimonials = [
-  {
-    quote:
-      "Eindelijk een renovatieploeg die doet wat ze belooft. Eén aanspreekpunt, perfecte planning en een resultaat dat de verwachtingen overtreft.",
-    author: "Familie Vandenberghe",
-    place: "Hasselt",
-  },
-  {
-    quote:
-      "Van het eerste gesprek tot de oplevering: nauwgezet, eerlijk en met oog voor detail. Onze keuken is exact zoals we ze gedroomd hadden.",
-    author: "Sofie & Tom",
-    place: "Genk",
-  },
-  {
-    quote:
-      "Wij waardeerden enorm dat de zaakvoerder zelf langskwam. Geen gepuzzel met onderaannemers, gewoon kwaliteit en rust.",
-    author: "Patrick D.",
-    place: "Sint-Truiden",
-  },
+  { n: "01", title: "Gratis kennismaking", body: "Wij komen ter plaatse, luisteren naar uw wensen en bekijken de situatie." },
+  { n: "02", title: "Heldere offerte", body: "U ontvangt een gedetailleerde, transparante offerte zonder verborgen kosten." },
+  { n: "03", title: "Uitvoering & oplevering", body: "Wij voeren alles uit en leveren op — u heeft één vast aanspreekpunt." },
 ];
 
 function HomePage() {
@@ -105,90 +96,88 @@ function HomePage() {
       {/* HERO */}
       <section className="relative bg-ink text-cream">
         <div className="absolute inset-0">
-          <img
-            src={heroTeam.url}
-            alt="Renobest team aan het werk aan een dressing"
+          <Placeholder
+            prompt="Aerial view of beautiful residential renovation project in Belgian Limburg, brick and modern architecture, warm sunset light, professional editorial photography, construction excellence"
+            width={1920}
+            height={1080}
             className="h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/70 to-ink/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/92 via-ink/72 to-ink/35" />
         </div>
         <div className="container-narrow relative grid gap-12 py-20 lg:py-28">
           <div className="max-w-2xl">
-            <p className="eyebrow">Renovatie · Limburg</p>
+            <p className="eyebrow">Bouwfirma · Tongeren · Limburg</p>
             <h1 className="mt-5 text-5xl leading-[1.02] md:text-6xl lg:text-7xl">
-              Renovatie badkamer, keuken &{" "}
-              <span className="italic text-primary">woning</span> in Limburg.
+              Renovatie & ruwbouw in{" "}
+              <span className="italic text-primary">Tongeren.</span>
             </h1>
-            <p className="mt-7 max-w-xl text-lg leading-relaxed text-cream/85">
-              Vertrouw op Renobest voor een stijlvolle en praktische badkamer,
-              keuken of dressing . Afgewerkt met veel oog voor detail, door
-              onze eigen vakmensen.
+            <p className="mt-7 max-w-xl text-lg leading-relaxed text-cream/82">
+              Bouwfirma Houbrechts is uw lokale partner voor renovatiewerken en ruwbouw in de regio Tongeren–Limburg. Familiezaak, persoonlijke begeleiding, eerlijke prijzen.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Link
                 to="/contact"
                 className="inline-flex items-center justify-center gap-2 rounded-sm bg-primary px-7 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground transition-colors hover:bg-primary-deep"
               >
-                Vraag een offerte aan <ArrowRight className="h-4 w-4" />
+                Gratis offerte aanvragen <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 to="/aanpak"
                 className="inline-flex items-center justify-center gap-2 rounded-sm border border-cream/30 bg-ink/30 px-7 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-cream backdrop-blur transition-colors hover:border-primary hover:text-primary"
               >
-                Ontdek onze aanpak
+                Onze aanpak
               </Link>
             </div>
 
             <dl className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-cream/20 pt-8">
               <Stat n="15+" label="jaar ervaring" />
-              <Stat n="100%" label="eigen vakmensen" />
-              <Stat n="1" label="vast aanspreekpunt" />
+              <Stat n="100%" label="lokale expertise" />
+              <Stat n="6%" label="BTW mogelijk" />
             </dl>
           </div>
         </div>
 
-        {/* Floating USP bar overlapping hero */}
+        {/* Floating USP bar */}
         <div className="container-narrow relative -mb-16 translate-y-16">
           <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
             {usps.map((u) => (
               <div
                 key={u.title}
-                className="rounded-xl border border-cream/15 bg-ink/55 p-4 backdrop-blur-xl shadow-[var(--shadow-elegant)] sm:p-5"
+                className="rounded-sm border border-cream/12 bg-ink/55 p-4 backdrop-blur-xl shadow-[var(--shadow-elegant)] sm:p-5"
               >
                 <u.icon className="h-5 w-5 text-primary" strokeWidth={1.75} />
                 <h3 className="mt-3 text-sm font-semibold text-cream">{u.title}</h3>
-                <p className="mt-1 hidden text-xs leading-relaxed text-cream/75 sm:block">{u.body}</p>
+                <p className="mt-1 hidden text-xs leading-relaxed text-cream/70 sm:block">{u.body}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-
       {/* SERVICE SELECTOR */}
       <section className="bg-cream pt-32 pb-14">
         <div className="container-narrow">
           <SectionHeader
-            title="Waarmee kunnen wij u helpen?"
-            intro="Selecteer wat u wenst te renoveren en ontdek hoe Renobest uw dromen waarmaakt."
+            title="Waarvoor kunt u bij ons terecht?"
+            intro="Selecteer uw type project en ontdek hoe Bouwfirma Houbrechts uw woning transformeert."
             align="center"
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
+          <div className="mt-10 grid gap-5 md:grid-cols-2">
             {services.map((s) => (
               <Link
                 key={s.to}
                 to={s.to}
                 className="group flex flex-col overflow-hidden rounded-sm bg-background shadow-[var(--shadow-soft)] transition-all hover:shadow-[var(--shadow-elegant)]"
               >
-                <div className="relative h-48 overflow-hidden">
-                  <Placeholder prompt={s.prompt} width={800} height={600} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div className="relative h-56 overflow-hidden">
+                  <Placeholder prompt={s.prompt} width={900} height={700} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-ink/20 transition-opacity group-hover:bg-ink/10" />
                 </div>
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="text-2xl">{s.title}</h3>
+                <div className="flex flex-1 flex-col p-7">
+                  <h3 className="text-3xl">{s.title}</h3>
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
                   <div className="mt-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-                    Bekijk {s.title.toLowerCase()} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    Meer over {s.title.toLowerCase()} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>
               </Link>
@@ -197,10 +186,8 @@ function HomePage() {
         </div>
       </section>
 
-
       {/* Reviews marquee */}
       <ReviewsMarquee />
-
 
       {/* Approach teaser */}
       <Section className="bg-ink text-cream" bleed>
@@ -208,12 +195,11 @@ function HomePage() {
           <div>
             <p className="eyebrow">Onze aanpak</p>
             <h2 className="mt-3 text-4xl leading-[1.1] md:text-5xl">
-              Van eerste droom tot laatste detail —{" "}
+              Van eerste gesprek tot laatste steen —{" "}
               <span className="italic text-primary">begin tot einde.</span>
             </h2>
-            <p className="mt-5 max-w-md text-base leading-relaxed text-cream/70">
-              We luisteren naar uw dromen, helpen u slimme keuzes maken en
-              realiseren uw héle project met onze eigen vakmensen.
+            <p className="mt-5 max-w-md text-base leading-relaxed text-cream/68">
+              We luisteren naar uw wensen, adviseren eerlijk en realiseren uw bouwproject — met een vast aanspreekpunt en transparante afspraken.
             </p>
             <Link
               to="/aanpak"
@@ -231,7 +217,7 @@ function HomePage() {
                 <span className="font-serif text-3xl text-primary">{step.n}</span>
                 <div>
                   <h3 className="text-xl">{step.title}</h3>
-                  <p className="mt-1 text-sm text-cream/70">{step.body}</p>
+                  <p className="mt-1 text-sm text-cream/68">{step.body}</p>
                 </div>
               </li>
             ))}
@@ -249,12 +235,12 @@ function HomePage() {
         </div>
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {[
-            { prompt: "Modern minimalist bathroom with black slate floor, brass shower fixtures, freestanding oval tub", title: "Badkamer · Hasselt" },
-            { prompt: "Warm wood kitchen with marble island and brass pendant lights, scandinavian style", title: "Keuken · Genk" },
-            { prompt: "Custom walk-in dressing with oak shelving and integrated LED strips, luxury closet design", title: "Dressing · Tongeren" },
-            { prompt: "Spa-style bathroom with double vanity, large mirror, terrazzo tiles, plants", title: "Badkamer · Sint-Truiden" },
-            { prompt: "Industrial style kitchen with black cabinets, concrete worktop and brass accents", title: "Keuken · Maaseik" },
-            { prompt: "Compact bathroom renovation with green tiles, brass fixtures, vintage mirror", title: "Badkamer · Bilzen" },
+            { prompt: "Beautiful renovated Belgian bathroom with grey slate tiles, walk-in shower, modern fixtures, warm lighting", title: "Badkamerrenovatie · Tongeren" },
+            { prompt: "Brick masonry ruwbouw construction on modern Belgian residential home extension, Limburg, professional construction photography", title: "Uitbouw ruwbouw · Bilzen" },
+            { prompt: "Complete home renovation interior, open living space with modern kitchen and wooden floors, Belgian style", title: "Totaalrenovatie · Riemst" },
+            { prompt: "Renovated Belgian kitchen with cream cabinets, natural stone counter, warm pendant lighting, editorial interior photography", title: "Keukenrenovatie · Borgloon" },
+            { prompt: "New construction Belgian house foundations and brickwork, professional ruwbouw, Limburg landscape", title: "Nieuwbouw ruwbouw · Hoeselt" },
+            { prompt: "Renovated Belgian facade gevelrenovatie, freshly repointed brickwork on traditional Limburg house, professional photography", title: "Gevelrenovatie · Tongeren" },
           ].map((p) => (
             <figure key={p.title} className="group overflow-hidden rounded-sm bg-background shadow-[var(--shadow-soft)]">
               <Placeholder prompt={p.prompt} width={900} height={700} className="transition-transform duration-700 group-hover:scale-105" />
@@ -263,7 +249,6 @@ function HomePage() {
           ))}
         </div>
       </Section>
-
 
       <CTABand />
     </SiteShell>
@@ -274,7 +259,7 @@ function Stat({ n, label }: { n: string; label: string }) {
   return (
     <div>
       <dt className="font-serif text-3xl text-primary md:text-4xl">{n}</dt>
-      <dd className="mt-1 text-xs uppercase tracking-[0.14em] text-cream/60">{label}</dd>
+      <dd className="mt-1 text-xs uppercase tracking-[0.14em] text-cream/55">{label}</dd>
     </div>
   );
 }

@@ -7,15 +7,12 @@ import { Mail, Phone, MapPin, Clock, ArrowRight } from "lucide-react";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact & offerte aanvragen — Renobest" },
+      { title: "Contact & gratis offerte — Bouwfirma Houbrechts Tongeren" },
       {
         name: "description",
         content:
-          "Vraag vrijblijvend uw offerte aan bij Renobest. Wij plannen een kennismakingsgesprek bij u thuis in Limburg.",
+          "Vraag vrijblijvend uw offerte aan bij Bouwfirma Houbrechts in Tongeren. Wij plannen een gratis kennismakingsgesprek bij u thuis. Reactie binnen 24u.",
       },
-      { property: "og:title", content: "Contact — Renobest" },
-      { property: "og:description", content: "Plan een vrijblijvend gesprek over uw renovatie." },
-      { property: "og:url", content: "/contact" },
     ],
     links: [{ rel: "canonical", href: "/contact" }],
   }),
@@ -28,8 +25,8 @@ function ContactPage() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-    if (!data.get("naam") || !data.get("email") || !data.get("bericht")) {
-      toast.error("Vul alstublieft alle verplichte velden in.");
+    if (!data.get("naam") || !data.get("telefoon") || !data.get("bericht")) {
+      toast.error("Vul alstublieft naam, telefoon en projectomschrijving in.");
       return;
     }
     setSubmitting(true);
@@ -45,15 +42,13 @@ function ContactPage() {
       <Toaster position="top-center" richColors />
       <section className="bg-ink text-cream">
         <div className="container-narrow py-20 md:py-24">
-          <p className="eyebrow">Contact</p>
+          <p className="eyebrow">Contact · Tongeren</p>
           <h1 className="mt-4 max-w-3xl text-5xl leading-[1.05] md:text-6xl">
-            Realiseer uw{" "}
-            <span className="italic text-primary">droomproject</span> — neem contact op.
+            Start uw{" "}
+            <span className="italic text-primary">bouwproject</span> — neem contact op.
           </h1>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-cream/75">
-            Vul het formulier in en wij plannen een vrijblijvend
-            kennismakingsgesprek bij u thuis. Binnen 24u krijgt u van ons
-            bericht.
+            Vul het formulier in en wij plannen een gratis kennismakingsgesprek bij u thuis in de regio Tongeren. Reactie binnen 24 uur.
           </p>
         </div>
       </section>
@@ -67,37 +62,37 @@ function ContactPage() {
             <div className="grid gap-5">
               <Field label="Naam *" name="naam" required />
               <div className="grid gap-5 md:grid-cols-2">
-                <Field label="E-mail *" name="email" type="email" required />
-                <Field label="Telefoon" name="telefoon" type="tel" />
+                <Field label="Telefoon *" name="telefoon" type="tel" required />
+                <Field label="E-mail" name="email" type="email" />
               </div>
               <div className="grid gap-5 md:grid-cols-2">
                 <div>
                   <label className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                    Dienst
+                    Type project
                   </label>
                   <select
                     name="dienst"
-                    defaultValue="Badkamer"
+                    defaultValue="Renovatie"
                     className="mt-2 w-full rounded-sm border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
                   >
-                    <option>Badkamer</option>
-                    <option>Keuken</option>
-                    <option>Dressing</option>
-                    <option>Combinatie / anders</option>
+                    <option>Renovatie</option>
+                    <option>Ruwbouw / Nieuwbouw</option>
+                    <option>Uitbouw / Aanbouw</option>
+                    <option>Combinatie / Anders</option>
                   </select>
                 </div>
                 <Field label="Postcode" name="postcode" />
               </div>
               <div>
                 <label className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                  Vertel ons over uw project *
+                  Omschrijf uw project *
                 </label>
                 <textarea
                   name="bericht"
                   required
-                  rows={6}
+                  rows={5}
                   className="mt-2 w-full rounded-sm border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
-                  placeholder="Beschrijf kort uw renovatie, gewenste timing, eventuele inspiratie..."
+                  placeholder="Beschrijf kort uw project: type woning, gewenste werken, eventuele timing..."
                 />
               </div>
               <button
@@ -109,7 +104,7 @@ function ContactPage() {
                 <ArrowRight className="h-4 w-4" />
               </button>
               <p className="text-xs text-muted-foreground">
-                We nemen binnen 24u contact met u op. Uw gegevens worden enkel gebruikt om uw aanvraag te behandelen.
+                Wij nemen binnen 24u contact met u op. Uw gegevens worden enkel gebruikt om uw aanvraag te behandelen en nooit gedeeld met derden.
               </p>
             </div>
           </form>
@@ -118,17 +113,22 @@ function ContactPage() {
             <div className="rounded-sm bg-ink p-8 text-cream">
               <p className="eyebrow">Bereik ons direct</p>
               <ul className="mt-6 space-y-4 text-sm">
-                <ContactItem icon={Phone} label="Telefoon" value="+32 (0)11 00 00 00" href="tel:+3211000000" />
-                <ContactItem icon={Mail} label="E-mail" value="info@renobest.be" href="mailto:info@renobest.be" />
-                <ContactItem icon={MapPin} label="Werkgebied" value="Limburg & omstreken" />
-                <ContactItem icon={Clock} label="Bereikbaar" value="Ma–Vr · 8u – 18u" />
+                <ContactItem icon={Phone} label="Telefoon" value="+32 (0)..." href="tel:+32" />
+                <ContactItem icon={Mail} label="E-mail" value="info@houbrechts.be" href="mailto:info@houbrechts.be" />
+                <ContactItem icon={MapPin} label="Adres" value="Driekruisenstraat 105, 3700 Tongeren" />
+                <ContactItem icon={Clock} label="Bereikbaar" value="Ma–Vr · 8u – 18u · Za op afspraak" />
               </ul>
             </div>
             <div className="rounded-sm border border-border bg-cream p-6 text-sm">
               <p className="font-serif text-xl">Wij komen bij u thuis</p>
               <p className="mt-2 text-muted-foreground">
-                Het eerste gesprek vindt plaats bij u thuis. Zo zien we de
-                ruimte, leren u kennen en kunnen we gericht advies geven.
+                Het eerste gesprek vindt altijd bij u thuis plaats. Zo zien we de situatie, leren we uw project kennen en geven we gericht advies — zonder verplichtingen.
+              </p>
+            </div>
+            <div className="rounded-sm border border-border bg-cream p-6 text-sm">
+              <p className="font-serif text-xl">💶 6% BTW mogelijk</p>
+              <p className="mt-2 text-muted-foreground">
+                Voor renovatiewerken aan woningen ouder dan 10 jaar geldt in België een verlaagd BTW-tarief van 6%. Vraag het ons zeker na.
               </p>
             </div>
           </aside>
@@ -179,7 +179,7 @@ function ContactItem({
     <div className="flex items-start gap-3">
       <Icon className="mt-0.5 h-5 w-5 flex-none text-primary" strokeWidth={1.6} />
       <div>
-        <p className="text-xs uppercase tracking-[0.14em] text-cream/55">{label}</p>
+        <p className="text-xs uppercase tracking-[0.14em] text-cream/52">{label}</p>
         <p className="mt-0.5 text-base">{value}</p>
       </div>
     </div>
